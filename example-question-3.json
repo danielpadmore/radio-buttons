@@ -1,0 +1,17 @@
+{
+  "question": "Which of these is a number?",
+  "answers": [
+    {
+      "text": ["5", "No"],
+      "correct": true
+    },
+    {
+      "text": ["Maybe", "12"],
+      "correct": false
+    },
+    {
+      "text": ["462", "Joel"],
+      "correct": true
+    }
+  ]
+}

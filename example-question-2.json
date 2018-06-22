@@ -1,0 +1,10 @@
+{
+  "question": "Are there 2 questions?",
+  "answers": {
+    "a": ["Yes", "No"],
+    "b": ["No", "Yes"]},
+  "correct": {
+    "a": 0,
+    "b": 1
+  }
+}
