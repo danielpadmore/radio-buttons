@@ -1,7 +1,7 @@
 # radio-buttons
-> Button styled component to display a question, an interactive series of toggled answers and a result statement.
+Button styled component to display a question, an interactive series of toggled answers and a result statement.
 
-The component is intended as a recreation demo of existing component at Seneca Learning.
+> The component is intended as a recreation demo of existing component at Seneca Learning.
 
 ## Installing / Getting Started
 

@@ -1,62 +1,86 @@
 // Toggle Buttons Component
-/* COMMENT EVERYTHING UP AND WRITE README.MD FIRST, THEN TRY ADD TESTS/POLISH OFF ANY FLAWS */
 import React, { Component } from 'react' // import React & Component
-import data from '../../example-question-3.json' // example question data pulled from server
+import data from './example-questions/example-question-3.json' // example question data pulled from server
 import Question from './src/Question' // import question component
 import Toggles from './src/Toggles' // import toggles component
 import Result from './src/Result' // import result component
 
-export default class ToggleButtons extends Component {
+export default class ToggleButtons extends Component { // Export default as ToggleButtons Component
+  
+  // Constructor to set up initial state
   constructor(props) {
     super(props);
     this.state = {
       frozen: false,
-      answerString: 'incorrect',
+      resultString: 'incorrect',
       correctAnswers: Array(Object.keys(data.answers).length).fill(null),
-      currentAnswers: Array(Object.keys(data.answers).length).fill(null), 
-      correctIndex: []
+      currentAnswers: Array(Object.keys(data.answers).length).fill(null),
+      colourState: ''
     }
-    this.handleToggle = this.handleToggle.bind(this)
-    this.correctCheck = this.correctCheck.bind(this)
   }
-  componentDidMount() {
+
+  // Lifecycle: on component mount set values to the states
+  componentWillMount = () => {
     const correct = Array.from(data.answers).map(item => item.correct)
-    const current = [false, true, false]//randomiseToggles()
+    const current = this.randomiseToggles(Array(Object.keys(data.answers).length))
     this.setState({
       correctAnswers: correct,
       currentAnswers: current
     })
   }
-  randomiseToggles() {
-    //const answers = this.state.currentAnswers.slice()
-    return( [false, true, false] )
+
+  // Lifecycle: on component unmount, clear state
+  componentWillUnmount = () => {
+    this.setState({
+      frozen: [],
+      resultString: [],
+      correctAnswers: [],
+      currentAnswers: [],
+      colourState: []
+    })
   }
-  handleToggle(e, i) {
-    //const answers = this.state.currentAnswers.slice()
-    //answers[i] = newAnswer
+
+  // Function to randomise starting toggle positions (all positions as incorrect would be too obvious?)
+  randomiseToggles = (numToggles) => {
+    return(Array.from(
+      numToggles,
+      () => Math.random() >= 0.5
+    ))
+  }
+
+  // Function to handle clicks on toggles
+  handleToggle = (e, i) => {
+
+    // Once correct answer is found, freeze toggles from use.
     if(this.state.frozen === true){return}
+
+    //Update answer state with new toggle positions
     this.setState(prevState => {
-      //console.log(prevState.currentAnswers[i])
       let newAnswers = this.state.currentAnswers.slice()
       const correctAnswers = this.state.correctAnswers.slice()
       newAnswers[i] = !prevState.currentAnswers[i]
-      //console.log(this.correctCheck(newAnswers, correctAnswers))
+
+      // Check if current answer is correct
       if(this.correctCheck(newAnswers, correctAnswers)[0]) {
-        //this.questionComplete()
+
+        // On correct answer, freeze toggles, change result string and update state
         return {
           currentAnswers: newAnswers,
-          answerString: 'correct', 
+          resultString: 'correct',
+          colourState: 'correct',
           frozen: true
         }
       }
+
+      // On incorrect answer, update state
       else {
         return {currentAnswers: newAnswers}
       }
     })
   }
-  /* TRY TO USE COUNT TO MAKE A COLOUR MODIFIER IF THERES TIME */
-  correctCheck(newAnswers, correctAnswers) {
-    //console.log(Object.keys(correctAnswers).length)
+
+  // Function to handle checking answers, called from handleToggle
+  correctCheck = (newAnswers, correctAnswers) => {
     const total = Object.keys(correctAnswers).length
     let count = 0
     for(let i = 0; i < total; i++) {
@@ -69,9 +93,18 @@ export default class ToggleButtons extends Component {
     }
     else {return ([false, count])}
   }
+
+  // Render component
   render() {
-    //console.log(Object.keys(data.answers).length)
-    let appClass = ["app", this.state.answerString, (this.state.answerString === 'correct' ? 'correct' : 'incorrect')].join(' ')
+
+    // Using a dynamic string className to handle app colour
+    let appClass = [
+      "app",
+      this.state.colourState,
+      (this.state.colourState === 'correct' ? 'correct' : 'incorrect')
+    ].join(' ')
+    
+    // Return Question, ToggleList and Result using data from json and Component logic
     return (
       <div className = {appClass}>
         <Question id = "question" question = {data.question} />
@@ -80,16 +113,19 @@ export default class ToggleButtons extends Component {
           toggleState = {this.state.currentAnswers}
           onToggle = {this.handleToggle}
           answers = {data.answers}
+          colourState = {this.state.colourState}
         />
-        <Result id = "result" result = {this.state.answerString} />
+        <Result id = "result" result = {this.state.resultString} />
       </div>
     )
   }
 }
 
+// Stateless component to create variable number of Toggles
 function TogglesList(props) {
-  const answers = props.answers
-  const list = answers.map((answer, i) =>
+
+  // Use map to create Toggles based on number of answers
+  const list = props.answers.map((answer, i) =>
     <Toggles 
       key = {i}
       id = {i} 
@@ -97,8 +133,11 @@ function TogglesList(props) {
       ans2 = {answer.text[1]} 
       toggleState = {props.toggleState[i]}
       onToggle = {props.onToggle}
+      colourState = {props.colourState}
     />
   )
+
+  // return container div and list
   return(
     <div className = "togglecontainer">
       {list}

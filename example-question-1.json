@@ -1,8 +1,0 @@
-{
-  "question": "Are you still there?",
-  "answers": {
-    "a": ["Yes", "No"]},
-  "correct": {
-    "a": 0
-  }
-}

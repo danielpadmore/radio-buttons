@@ -1,0 +1,9 @@
+{
+  "question": "Are you still there?",
+  "answers": [
+    {
+      "text": ["Yes", "No"],
+      "correct": true
+    }
+  ]
+}

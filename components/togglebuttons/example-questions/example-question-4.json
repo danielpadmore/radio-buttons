@@ -1,0 +1,21 @@
+{
+  "question": "Can you count to four?",
+  "answers": [
+    {
+      "text": ["1", "No"],
+      "correct": true
+    },
+    {
+      "text": ["five", "2"],
+      "correct": false
+    },
+    {
+      "text": ["3", "26"],
+      "correct": true
+    },
+    {
+      "text": ["4", "John"],
+      "correct": true
+    }
+  ]
+}
