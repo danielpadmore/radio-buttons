@@ -1,6 +1,7 @@
 // Result Component
 
 import React, { Component } from 'react' // import React & Component
+import PropTypes from 'prop-types' // import PropTypes
 
 export default class Result extends Component { // Export Result Component by default
 
@@ -14,4 +15,7 @@ export default class Result extends Component { // Export Result Component by de
       </div>
     )
   }
+}
+Result.propTypes = {
+  result: PropTypes.string.isRequired
 }
