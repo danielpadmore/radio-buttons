@@ -17,25 +17,39 @@ npm run dev
 * Dynamically adapts to new questions and answers
 * Adapts to varying number of answers
 * Animated toggles
-* Component colour change on correct answer
+* Component dynamically changes colour depending on answer
+
+## Images
+
+Component shown with incorrect answer
+
+<img src = "https://raw.githubusercontent.com/danielpadmore/radio-buttons/master/img/correct.JPG">
+
+Component shown with correct answer
+
+<img src = "https://raw.githubusercontent.com/danielpadmore/radio-buttons/master/img/incorrect.JPG">
 
 ## Functionality
 
-For this demo, the component imports a json file with a question and a varying number of answer objects. The answer objects contain two answer options per question and boolean to indicate the correct answer. In production, the json demo file role would be handled by a server.
+For this demo, the component is passed props with a question and an array of answer objects. The answer objects are given a value and boolean to indicate the correct answer. The answers should be in pairs with one true and one false per toggle.
 
 ### Initial configuration
 
-To change the question/answers displayed, create and import json files in this format:
+To change the question/answers displayed, pass 'question' and 'answers' props to the component in this format:
 ```example
-{
-  "question": "[INSERT YOUR QUESTION HERE]",
-  "answers": [
+question = "Your question here"
+
+answers = 
+  [
     {
-      "text": ["ANSWER1", "ANSWER2"],
-      "correct": [TRUE=ANSWER1 FALSE=ANSWER2]
+        "value": "Answer 1",
+        "correct": true/false
+    },
+    {
+        "value": "Answer 2",
+        "correct": true/false
     }
   ]
-}
 ```
 
 ## Links
