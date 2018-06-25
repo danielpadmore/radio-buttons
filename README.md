@@ -21,11 +21,11 @@ npm run dev
 
 ## Images
 
-Component shown with incorrect answer
+Component shown with correct answer
 
 <img src = "https://raw.githubusercontent.com/danielpadmore/radio-buttons/master/img/correct.JPG">
 
-Component shown with correct answer
+Component shown with incorrect answer
 
 <img src = "https://raw.githubusercontent.com/danielpadmore/radio-buttons/master/img/incorrect.JPG">
 
