@@ -5,12 +5,6 @@
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
 }
-.app.correct {
-  background: linear-gradient(#29f0d5, #23c9d4);
-}
-.app.incorrect {
-  background: linear-gradient(#fceb4f, #f17d10);
-}
 
 .question {
   text-align: center;
@@ -73,11 +67,6 @@
   border: 1pt solid rgb(252, 157, 94);
   border-radius: 30px;
   transition: left .25s ease-in-out;
-}
-
-.button.correct {
-  background-color: rgba(41, 240, 213, 0.6);
-  border-color: rgb(106, 188, 255);
 }
 
 .result {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types' // import prop types
 
 export default class Toggles extends Component { // Export Toggles Component by default
   
-  render() { // Render function
+  render() {
 
     // Using a dynamic string className to handle toggle style
     const joinedClass = [
@@ -13,7 +13,7 @@ export default class Toggles extends Component { // Export Toggles Component by 
       this.props.className,
       (this.props.toggleState ? ' ' : 'switched')
     ].join(' ')
-    
+
     // Return the Toggle button and two SliderText Components with answers
     return (
       <div 
@@ -22,8 +22,8 @@ export default class Toggles extends Component { // Export Toggles Component by 
       >
         <Button colourState = {this.props.colourState} />
         <div className = "toggletextwrapper">
-          <SliderText answer = {this.props.ans1} />
-          <SliderText answer = {this.props.ans2} />
+          <SliderText answer = {this.props.ans[0]} />
+          <SliderText answer = {this.props.ans[1]} />
         </div>
       </div>
     )
@@ -34,7 +34,10 @@ export default class Toggles extends Component { // Export Toggles Component by 
 Toggles.propTypes = {
   onToggle: PropTypes.func.isRequired,
   className: PropTypes.string,
-  colourState: PropTypes.string.isRequired
+  colourState: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  ans: PropTypes.array.isRequired,
+  toggleState: PropTypes.bool.isRequired
 }
 Toggles.defaultProps = {
   className: ''
@@ -42,9 +45,11 @@ Toggles.defaultProps = {
 
 // Stateless function to return button div
 function Button(props) {
-  let joinedClass = ["button", props.colourState].join(' ')
+  let joinedClass = "button"
   return(
-    <div className = {joinedClass}>
+    <div
+    className = {joinedClass}
+    style = {{borderColor: props.colourState, backgroundColor: props.colourState}}>
     </div>
   )
 }

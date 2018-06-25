@@ -6,5 +6,38 @@ import ReactDOM from 'react-dom' // Import React DOM
 import './styles.scss' // Import styles from scss file
 import ToggleButtons from './components/togglebuttons/ToggleButtons' // import ToggleButtons React Component
 
-const root = document.querySelector('#app') // Grab app DOM element
-ReactDOM.render(<ToggleButtons />, root) // Render the Toggle Buttons Component
+// Define example Q&A
+const exampleQuestion = "Which of these is a number?"
+const exampleAnswers = [
+    {
+        "value": "5",
+        "correct": true
+    },
+    {
+        "value": "No",
+        "correct": false
+    },
+    {
+        "value": "Maybe",
+        "correct": false
+    },
+    {
+        "value": "12",
+        "correct": true
+    },
+    {
+        "value": "462",
+        "correct": true
+    },
+    {
+        "value": "Joel",
+        "correct": false
+    }
+  ]
+
+const root = document.querySelector('#app') // Select app DOM element
+ReactDOM.render(
+    <ToggleButtons
+        question = {exampleQuestion}
+        answers = {exampleAnswers}
+    />, root) // Render the Toggle Buttons Component with example Q&A
